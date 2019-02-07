@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 11:05:37 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/06 15:11:05 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/07 12:41:31 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ int		draw_fractal(t_env *env)
 		return (julia(env));
 	else if (ft_strcmp(env->fract, "BurningShip") == 0)
 		return (burning(env));
+	else if (ft_strcmp(env->fract, "Palm") == 0)
+	{
+		env->jx = -0.294;
+		env->jy = -0.635;
+		return (julia(env));
+	}
 	else if (ft_strcmp(env->fract, "NULL") == 0 && env->params == 1)
 		return (no_fractal(env));
 	return (0);
@@ -42,15 +48,21 @@ int		env_init(t_env *env)
 	env->zoom = 650;
 	env->sx = 2560;
 	env->sy = 1440;
+	env->jx = 0;
+	env->jy = 0;
 	env->mx = 0;
 	env->my = 0;
+	env->mfactor = 1;
+	env->zfactor = 1;
 	env->r = 255;
 	env->g = 255;
 	env->b = 255;
 	if ((env->win_main = mlx_new_window(env->mlx, env->sx, env->sy, "Fract'ol")) == NULL)
 			return (error(2));
-	mlx_key_hook(env->win_main, key_hooks, env);
+	mlx_key_hook(env->win_main, esc_handler, env);
 	mlx_mouse_hook(env->win_main, mouse_hooks, env);
+	mlx_hook(env->win_main, KeyPress, KeyPressMask, key_hooks, env);
+	mlx_hook(env->win_main, MotionNotify, PointerMotionMask, julia_param, env);
 	if (draw_fractal(env) == 1)
 		return (1);
 	mlx_loop(env->mlx);

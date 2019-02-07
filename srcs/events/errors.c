@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:59:28 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/06 14:40:14 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/07 12:01:08 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		error(int code)
 	{
 		printf("\033[36m[USAGE] ./fractol {Fractal}\n");
 		printf("\033[36mAvailable Fractals :\n");
-		printf("\033[36m- Mandelbrot\n- Julia\n- BurningShip\n- Bidule\033[0m\n");
+		printf("\033[36m- Mandelbrot\n- Julia\n- BurningShip\n- Palm\033[0m\n");
 	}
 	else if (code == 1)
 		printf("\033[22;31m[ERROR] Wrong Fractal !\033[0m\n");
@@ -35,7 +35,8 @@ int		verify_arguments(t_env *env)
 	if (ft_strcmp(env->fract, "BurningShip") != 0
 	&& ft_strcmp(env->fract, "Julia") != 0
 	&& ft_strcmp(env->fract, "Mandelbrot") != 0
-	&& ft_strcmp(env->fract, "NULL") != 0)
+	&& ft_strcmp(env->fract, "Palm") != 0
+	&& (ft_strcmp(env->fract, "NULL") == 0 && env->params != 1))
 		return (1);
 	return (0);
 }

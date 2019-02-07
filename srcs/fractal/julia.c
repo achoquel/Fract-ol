@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:54:54 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/06 15:08:59 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/07 11:59:34 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int		julia_init(t_mandelbrot *m, t_env *env, int moment)
 {
 	if (moment == 1)
 	{
-		m->c_r = 0.285;
-		m->c_i = 0.01;
+		m->c_r = env->jx;
+		m->c_i = env->jy;
 		m->z_r = m->x / m->zoom + m->x1;
 		m->z_i = m->y / m->zoom + m->y1;
 		m->i = 0;
