@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:26:30 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/07 12:40:18 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/07 16:56:48 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@
 # include <stdlib.h>
 # include "../srcs/libft/includes/libft.h"
 
-/***************************************************************** 
- *  * EVENT DEFINITIONS 
- *   *****************************************************************/
-/* Input Event Masks. Used as event-mask window attribute and as arguments
- *    to Grab requests.  Not to be confused with event names.  */
 # define NoEventMask 0L
 # define KeyPressMask (1L<<0)
 # define KeyReleaseMask (1L<<1)
@@ -114,6 +109,7 @@ typedef struct	s_env
 	int			d;
 	int			mfactor;
 	int			zfactor;
+	int			hidden;
 }				t_env;
 
 typedef struct	s_mandelbrot
@@ -138,10 +134,11 @@ int	draw_fractal(t_env *env);
 int	mandelbrot(t_env *env);
 int	julia(t_env *env);
 int	burning(t_env *env);
-int	starbrot(t_env *env);
+int	palm(t_env *env);
 int mouse_hooks(int key, int x, int y, t_env *env);
 int key_hooks(int key, t_env *env);
 int esc_handler(int key, t_env *env);
 int julia_param(int x, int y, t_env *env);
+int hud(t_env *env);
 
 #endif

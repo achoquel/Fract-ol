@@ -6,7 +6,7 @@
 #    By: achoquel <achoquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/06 12:01:01 by achoquel          #+#    #+#              #
-#    Updated: 2019/02/07 11:12:58 by achoquel         ###   ########.fr        #
+#    Updated: 2019/02/07 16:54:54 by achoquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME	=	fractol
 SRCS	=	srcs/fractal/mandelbrot.c	\
 			srcs/fractal/julia.c		\
 			srcs/fractal/burning.c		\
-			srcs/fractal/bub.c			\
+			srcs/fractal/palm.c			\
 			srcs/events/errors.c		\
 			srcs/events/event_handler.c	\
 			srcs/main/main.c			

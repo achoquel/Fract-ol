@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 11:05:37 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/07 12:41:31 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/07 16:56:55 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@ int		no_fractal(t_env *env)
 	return (0);
 }
 
+int		hud(t_env *env)
+{
+	if ((env->img = mlx_xpm_file_to_image(env->mlx, "./img/ath.xpm", &env->size_l, &env->bpp)) == NULL)
+		return (error(3));
+	mlx_put_image_to_window(env->mlx, env->win_main, env->img, 0, 0);
+	mlx_destroy_image(env->mlx, env->img);
+	return (0);
+}
+
+
 int		draw_fractal(t_env *env)
 {
 	if (ft_strcmp(env->fract, "Mandelbrot") == 0)
@@ -30,11 +40,7 @@ int		draw_fractal(t_env *env)
 	else if (ft_strcmp(env->fract, "BurningShip") == 0)
 		return (burning(env));
 	else if (ft_strcmp(env->fract, "Palm") == 0)
-	{
-		env->jx = -0.294;
-		env->jy = -0.635;
-		return (julia(env));
-	}
+		return (palm(env));
 	else if (ft_strcmp(env->fract, "NULL") == 0 && env->params == 1)
 		return (no_fractal(env));
 	return (0);
@@ -47,7 +53,7 @@ int		env_init(t_env *env)
 	env->mlx = mlx_init();
 	env->zoom = 650;
 	env->sx = 2560;
-	env->sy = 1440;
+	env->sy = 1418;
 	env->jx = 0;
 	env->jy = 0;
 	env->mx = 0;

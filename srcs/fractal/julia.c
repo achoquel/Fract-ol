@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:54:54 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/07 11:59:34 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/07 16:53:47 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,5 @@ int		julia(t_env *env)
 	}
 	mlx_put_image_to_window(env->mlx, env->win_main, env->img, 0, 0);
 	mlx_destroy_image(env->mlx, env->img);
-	return (0);
+	return (hud(env));
 }

@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 11:07:37 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/07 12:42:42 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/07 15:15:28 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int		julia_param(int x, int y, t_env *env)
 		env->jy = (double)y / 1000;
 	else if (y > 999 && y < 1440)
 		env->jy = (double)y / 1000;
-	printf("%f %f\n", env->jx, env->jy);
 	mlx_clear_window(env->mlx, env->win_main);
 	draw_fractal(env);
 	return (0);
@@ -91,12 +90,12 @@ int		fractal_changer(int key, t_env *env)
 
 int		mouse_hooks(int key, int x, int y, t_env *env)
 {
+	(void)x;
+	(void)y;
 	if (key == 5)
 		env->zoom += (1 * env->zfactor);
 	if (key == 4)
 		env->zoom -= (1 * env->zfactor);
-	(void)x;
-	(void)y;
 	mlx_clear_window(env->mlx, env->win_main);
 	draw_fractal(env);
 	return (0);

@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   burning.c                                          :+:      :+:    :+:   */
+/*   palm.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/06 10:56:24 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/07 16:53:56 by achoquel         ###   ########.fr       */
+/*   Created: 2019/02/06 10:54:54 by achoquel          #+#    #+#             */
+/*   Updated: 2019/02/07 16:56:29 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol.h"
 
-/*
-**                  BURNING SHIP ALGORITHM
-** Exact same as Mandelbrot one, but it is done with the absolute value
-** of Z instead of - or + value
-*/
-
-int		burning_init(t_mandelbrot *m, t_env *env, int moment)
+int		palm_init(t_mandelbrot *m, t_env *env, int moment)
 {
 	if (moment == 1)
 	{
-		m->c_r = m->x / m->zoom + m->x1;
-		m->c_i = m->y / m->zoom + m->y1;
-		m->z_r = 0;
-		m->z_i = 0;
+		m->c_r = -0.294;
+		m->c_i = -0.635;
+		m->z_r = m->x / m->zoom + m->x1;
+		m->z_i = m->y / m->zoom + m->y1;
 		m->i = 0;
 	}
 	else
@@ -33,9 +27,9 @@ int		burning_init(t_mandelbrot *m, t_env *env, int moment)
 		m->x = 0;
 		m->y = 0;
 		m->zoom = env->zoom;
-		m->x1 = -(13.5 / (m->zoom / 100.0)) + (env->mx / (m->zoom / 10));
-		m->y1 = -(10.5 / (m->zoom / 100.0)) + (env->my / (m->zoom / 10));
-		m->iter = 64;
+		m->x1 = -(13.0 / (m->zoom / 100.0)) + (env->mx / (m->zoom / 10));
+		m->y1 = -(6.6 / (m->zoom / 100.0)) + (env->my / (m->zoom / 10));
+		m->iter = 150;
 		m->z_r = 0;
 		m->z_i = 0;
 		m->i = 0;
@@ -47,40 +41,38 @@ int		burning_init(t_mandelbrot *m, t_env *env, int moment)
 	return (0);
 }
 
-int		burning_color(double a, t_env *env)
+int		palm_color(double i, t_env *env)
 {
 	int	r;
 	int	g;
 	int	b;
 	int	c;
 
-	env->r = 0;
-	r = (a * 0);
-	g = (0 - (a * 0));
-	b = (255 - (a * 10));
+	r = (i * 5) * env->r;
+	g = (255 - (i * 15)) * env->g;
+	b = (255 - (i * 35)) * env->b;
 	c = (r << 16) + (g << 8) + b;
 	return (c);
-
 }
 
-int		burning(t_env *env)
+int		palm(t_env *env)
 {
 	t_mandelbrot m;
 
-	if (burning_init(&m, env, 0) == 1)
+	if (palm_init(&m, env, 0) == 1)
 		return (1);
 	while (m.x < env->sx)
 	{
 		while (m.y < env->sy)
 		{
-			burning_init(&m, env, 1);
-			while (fabs(m.z_r) * fabs(m.z_r) + fabs(m.z_i) * fabs(m.z_i) < 4 && m.i < m.iter)
+			palm_init(&m, env, 1);
+			while (m.z_r * m.z_r + m.z_i * m.z_i < 4 && m.i < m.iter)
 			{
 				m.tmp = m.z_r;
-				m.z_r = fabs(m.z_r) * fabs(m.z_r) - fabs(m.z_i) * fabs(m.z_i) + m.c_r;
-				m.z_i = 2 * fabs(m.tmp) * fabs(m.z_i) + m.c_i;
+				m.z_r = m.z_r * m.z_r - m.z_i * m.z_i + m.c_r;
+				m.z_i = 2 * m.tmp * m.z_i + m.c_i;
 				m.i++;
-				env->data[m.y * env->sx + m.x] = burning_color(m.i, env);
+				env->data[m.y * env->sx + m.x] = palm_color(m.i, env);
 			}
 			m.y++;
 		}
@@ -91,4 +83,3 @@ int		burning(t_env *env)
 	mlx_destroy_image(env->mlx, env->img);
 	return (hud(env));
 }
-
