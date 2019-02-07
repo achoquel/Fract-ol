@@ -13,3 +13,5 @@
  - Gestion des mlx_hook. 
  - Le Paramètre de Julia fonctionne avec la souris et sans clic.
  - Les couleurs sont toujours pourries.
+ - Ajout ATH sans variables.
+ - Bug avec fractal changer.
