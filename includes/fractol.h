@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:26:30 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/07 16:56:48 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/11 16:26:00 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,6 @@ typedef struct	s_env
 	int		bpp;
 	int		size_l;
 	int		endian;
-	int		*xpmx;
-	int		*xpmy;
 	double	zoom;
 	double		mx;
 	double		my;
@@ -106,10 +104,10 @@ typedef struct	s_env
 	int			r;
 	int			g;
 	int			b;
-	int			d;
 	int			mfactor;
-	int			zfactor;
-	int			hidden;
+	double			zfactor;
+	int			locked;
+	int			p;
 }				t_env;
 
 typedef struct	s_mandelbrot
@@ -134,11 +132,17 @@ int	draw_fractal(t_env *env);
 int	mandelbrot(t_env *env);
 int	julia(t_env *env);
 int	burning(t_env *env);
-int	palm(t_env *env);
+int	eye(t_env *env);
+int douady(t_env *env);
+int dendrite(t_env *env);
 int mouse_hooks(int key, int x, int y, t_env *env);
 int key_hooks(int key, t_env *env);
 int esc_handler(int key, t_env *env);
+int destroy_handler(t_env *env);
 int julia_param(int x, int y, t_env *env);
 int hud(t_env *env);
+int palette(int p, int zn, int iter, int max);
+char *get_palette(t_env *env);
+
 
 #endif

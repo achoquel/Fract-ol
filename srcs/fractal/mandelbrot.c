@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:52:34 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/07 16:46:15 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/11 14:04:44 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ static int	mandel_init(t_mandelbrot *m, t_env *env, int moment)
 	}
 	else
 	{
-		m->x = 0;
+		m->x = 500;
 		m->y = 0;
 		m->zoom = env->zoom;
-		m->x1 = -(13.5 / (m->zoom / 100.0)) + (env->mx / (m->zoom / 10));
+		m->x1 = -(18.5 / (m->zoom / 100.0)) + (env->mx / (m->zoom / 10));
 		m->y1 = -(6.8 / (m->zoom / 100.0)) + (env->my / (m->zoom / 10));
 		m->iter = 70;
 		m->z_r = 0;
@@ -68,23 +68,6 @@ static int	mandel_init(t_mandelbrot *m, t_env *env, int moment)
 				&env->endian);
 	}
 	return (0);
-}
-
-static int	mandel_color(double a, t_env *env)
-{
-	int	r;
-	int	g;
-	int	b;
-	int	c;
-
-	if (a == 70)
-		return (0x000000);
-	(void)env;
-	r = 255 - a * 2;
-	g = 255 - a * 5;
-	b = 255 - a * 7;
-	c = (r << 16) + (g << 8) + b;
-	return (c);
 }
 
 int			mandelbrot(t_env *env)
@@ -104,7 +87,7 @@ int			mandelbrot(t_env *env)
 				m.z_r = m.z_r * m.z_r - m.z_i * m.z_i + m.c_r;
 				m.z_i = 2 * m.tmp * m.z_i + m.c_i;
 				m.i++;
-				env->data[m.y * env->sx + m.x] = mandel_color(m.i, env);
+				env->data[m.y * env->sx + m.x] = palette(env->p, (m.z_r + m.z_i), m.i, m.iter);
 			}
 			m.y++;
 		}

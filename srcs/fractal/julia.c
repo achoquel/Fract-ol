@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:54:54 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/07 16:53:47 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/11 16:34:30 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int		julia_init(t_mandelbrot *m, t_env *env, int moment)
 	}
 	else
 	{
-		m->x = 0;
+		m->x = 500;
 		m->y = 0;
 		m->zoom = env->zoom;
-		m->x1 = -(13.0 / (m->zoom / 100.0)) + (env->mx / (m->zoom / 10));
+		m->x1 = -(15.0 / (m->zoom / 100.0)) + (env->mx / (m->zoom / 10));
 		m->y1 = -(6.6 / (m->zoom / 100.0)) + (env->my / (m->zoom / 10));
 		m->iter = 150;
 		m->z_r = 0;
@@ -44,20 +44,6 @@ int		julia_init(t_mandelbrot *m, t_env *env, int moment)
 				&env->endian);
 	}
 	return (0);
-}
-
-int		julia_color(double i, t_env *env)
-{
-	int	r;
-	int	g;
-	int	b;
-	int	c;
-
-	r = (i * 5) * env->r;
-	g = (255 - (i * 15)) * env->g;
-	b = (255 - (i * 35)) * env->b;
-	c = (r << 16) + (g << 8) + b;
-	return (c);
 }
 
 int		julia(t_env *env)
@@ -77,7 +63,7 @@ int		julia(t_env *env)
 				m.z_r = m.z_r * m.z_r - m.z_i * m.z_i + m.c_r;
 				m.z_i = 2 * m.tmp * m.z_i + m.c_i;
 				m.i++;
-				env->data[m.y * env->sx + m.x] = julia_color(m.i, env);
+				env->data[m.y * env->sx + m.x] = palette(env->p, (m.z_r + m.z_i), m.i, m.iter);
 			}
 			m.y++;
 		}

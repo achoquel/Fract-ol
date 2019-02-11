@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   burning.c                                          :+:      :+:    :+:   */
+/*   douady.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/06 10:56:24 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/11 15:43:04 by achoquel         ###   ########.fr       */
+/*   Created: 2019/02/06 10:54:54 by achoquel          #+#    #+#             */
+/*   Updated: 2019/02/11 16:34:45 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol.h"
 
 /*
-**                  BURNING SHIP ALGORITHM
-** Exact same as Mandelbrot one, but it is done with the absolute value
-** of Z instead of - or + value
+** Julia drawing algorithm is the same than Mandelbrot's one, except the c_r
+** and c_i varies.
 */
 
-int		burning_init(t_mandelbrot *m, t_env *env, int moment)
+int		douady_init(t_mandelbrot *m, t_env *env, int moment)
 {
 	if (moment == 1)
 	{
-		m->c_r = m->x / m->zoom + m->x1;
-		m->c_i = m->y / m->zoom + m->y1;
-		m->z_r = 0;
-		m->z_i = 0;
+		m->c_r = -0.123;
+		m->c_i = 0.745;
+		m->z_r = m->x / m->zoom + m->x1;
+		m->z_i = m->y / m->zoom + m->y1;
 		m->i = 0;
 	}
 	else
@@ -33,9 +32,9 @@ int		burning_init(t_mandelbrot *m, t_env *env, int moment)
 		m->x = 500;
 		m->y = 0;
 		m->zoom = env->zoom;
-		m->x1 = -(18.5 / (m->zoom / 100.0)) + (env->mx / (m->zoom / 10));
-		m->y1 = -(10.5 / (m->zoom / 100.0)) + (env->my / (m->zoom / 10));
-		m->iter = 64;
+		m->x1 = -(15.0 / (m->zoom / 100.0)) + (env->mx / (m->zoom / 10));
+		m->y1 = -(6.6 / (m->zoom / 100.0)) + (env->my / (m->zoom / 10));
+		m->iter = 150;
 		m->z_r = 0;
 		m->z_i = 0;
 		m->i = 0;
@@ -47,22 +46,22 @@ int		burning_init(t_mandelbrot *m, t_env *env, int moment)
 	return (0);
 }
 
-int		burning(t_env *env)
+int		douady(t_env *env)
 {
 	t_mandelbrot m;
 
-	if (burning_init(&m, env, 0) == 1)
+	if (douady_init(&m, env, 0) == 1)
 		return (1);
 	while (m.x < env->sx)
 	{
 		while (m.y < env->sy)
 		{
-			burning_init(&m, env, 1);
-			while (fabs(m.z_r) * fabs(m.z_r) + fabs(m.z_i) * fabs(m.z_i) < 4 && m.i < m.iter)
+			douady_init(&m, env, 1);
+			while (m.z_r * m.z_r + m.z_i * m.z_i < 4 && m.i < m.iter)
 			{
 				m.tmp = m.z_r;
-				m.z_r = fabs(m.z_r) * fabs(m.z_r) - fabs(m.z_i) * fabs(m.z_i) + m.c_r;
-				m.z_i = 2 * fabs(m.tmp) * fabs(m.z_i) + m.c_i;
+				m.z_r = m.z_r * m.z_r - m.z_i * m.z_i + m.c_r;
+				m.z_i = 2 * m.tmp * m.z_i + m.c_i;
 				m.i++;
 				env->data[m.y * env->sx + m.x] = palette(env->p, (m.z_r + m.z_i), m.i, m.iter);
 			}
