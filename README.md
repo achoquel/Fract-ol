@@ -25,6 +25,7 @@
  - Ajout du color changer.
  - Ajout du lock du paramètre de Julia.
  - Fin de l'ATH (Ajout des textes).
+ - Retrait du no_param.
  
 **Reste a faire :**
  
