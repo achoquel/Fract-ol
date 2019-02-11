@@ -15,3 +15,22 @@
  - Les couleurs sont toujours pourries.
  - Ajout ATH sans variables.
  - Bug avec fractal changer.
+
+**11/02 :**
+ 
+ - Ajout de la fractale Lapin de Douady.
+ - Ajout de la fractale Dendrite.
+ - Remplacement de la fractale Palm par EvilEyes.
+ - Gestion des couleurs avec 16 thèmes dispo.
+ - Ajout du color changer.
+ - Ajout du lock du paramètre de Julia.
+ - Fin de l'ATH (Ajout des textes).
+ 
+**Reste a faire :**
+ 
+  - Multithreading.
+  - Event Handler à bien travailler.
+  - Pourquoi pas ajouter quelques fractales ?
+  - Checker TOUS les leaks.
+  
+challah ca leak pas woullah
