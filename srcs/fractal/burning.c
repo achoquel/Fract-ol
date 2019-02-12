@@ -6,17 +6,11 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:56:24 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/11 15:43:04 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/12 17:18:54 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol.h"
-
-/*
-**                  BURNING SHIP ALGORITHM
-** Exact same as Mandelbrot one, but it is done with the absolute value
-** of Z instead of - or + value
-*/
 
 int		burning_init(t_mandelbrot *m, t_env *env, int moment)
 {
@@ -31,7 +25,7 @@ int		burning_init(t_mandelbrot *m, t_env *env, int moment)
 	else
 	{
 		m->x = 500;
-		m->y = 0;
+		m->y = -1;
 		m->zoom = env->zoom;
 		m->x1 = -(18.5 / (m->zoom / 100.0)) + (env->mx / (m->zoom / 10));
 		m->y1 = -(10.5 / (m->zoom / 100.0)) + (env->my / (m->zoom / 10));
@@ -55,20 +49,20 @@ int		burning(t_env *env)
 		return (1);
 	while (m.x < env->sx)
 	{
-		while (m.y < env->sy)
+		while (++m.y < env->sy)
 		{
 			burning_init(&m, env, 1);
-			while (fabs(m.z_r) * fabs(m.z_r) + fabs(m.z_i) * fabs(m.z_i) < 4 && m.i < m.iter)
+			while (fabs(MZR) * fabs(MZR) + fabs(MZI) * fabs(MZI) < 4 && MI < IT)
 			{
 				m.tmp = m.z_r;
-				m.z_r = fabs(m.z_r) * fabs(m.z_r) - fabs(m.z_i) * fabs(m.z_i) + m.c_r;
+				m.z_r = fabs(MZR) * fabs(MZR) - fabs(MZI) * fabs(MZI) + m.c_r;
 				m.z_i = 2 * fabs(m.tmp) * fabs(m.z_i) + m.c_i;
 				m.i++;
-				env->data[m.y * env->sx + m.x] = palette(env->p, (m.z_r + m.z_i), m.i, m.iter);
+				env->data[m.y * env->sx + m.x] = palette(env->p, (m.z_r + m.z_i)
+				, m.i, m.iter);
 			}
-			m.y++;
 		}
-		m.y = 0;
+		m.y = -1;
 		m.x++;
 	}
 	mlx_put_image_to_window(env->mlx, env->win_main, env->img, 0, 0);

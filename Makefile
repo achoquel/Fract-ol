@@ -6,7 +6,7 @@
 #    By: achoquel <achoquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/06 12:01:01 by achoquel          #+#    #+#              #
-#    Updated: 2019/02/11 16:47:04 by achoquel         ###   ########.fr        #
+#    Updated: 2019/02/12 16:55:12 by achoquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS	=	srcs/fractal/mandelbrot.c	\
 			srcs/fractal/dendrite.c		\
 			srcs/events/errors.c		\
 			srcs/events/event_handler.c	\
+			srcs/events/event_handler2.c\
 			srcs/main/palette.c			\
 			srcs/main/main.c
 

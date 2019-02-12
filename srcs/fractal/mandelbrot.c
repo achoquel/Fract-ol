@@ -6,40 +6,11 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:52:34 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/11 14:04:44 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/12 16:07:34 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol.h"
-
-/*
- **                    MANDELBROT DRAWING ALGORITHM
- **
- ** Formula : Zn+1 = Zn^2 + Z0
- ** We're going to create a complex number called Z to use X and Y
- ** So, Z = X + i*Y.
- ** A complex number is a number with a real part (here X) and an imaginary part
- ** (here i * Y). The particularity of theses numbers is that i * i = -1.
- ** We modify Z in our base formula :
- **    Zn+1 = Xn^2 + 2i * Xn * Yn + i^2 * Yn^2 + X0 + i * Y0
- ** => Zn+1 = Xn^2 - Yn^2 + X0 + i (2 * Xn * Yn + Y0)
- **           -----------------  --------------------
- **               real part          imaginary part
- ** To know the color of the point, we look his module
- **  A module is calculated with the following formula :
- ** sqrt(X^2 + Y^2);
- **
- ** We calculate the module of Zn :
- ** sqrt(Xn+1 ^ 2 + Yn+1 ^ 2)
- ** If the point is part of the fractal, its module should be less than 2 
- ** after x iterations
- ** So sqrt(Xn+1 ^ 2 + Yn+1 ^ 2) < 2
- ** We can simplify this :
- ** Xn+1 ^ 2 + Yn+1 ^ 2 < 4
- **
- ** Here, z_r is the real part of Z and z_i the imaginary part of Z.
- ** c_r is the real part of Z0 and c_i the imaginary part of Z0.
- */
 
 static int	mandel_init(t_mandelbrot *m, t_env *env, int moment)
 {
@@ -54,11 +25,11 @@ static int	mandel_init(t_mandelbrot *m, t_env *env, int moment)
 	else
 	{
 		m->x = 500;
-		m->y = 0;
+		m->y = -1;
 		m->zoom = env->zoom;
 		m->x1 = -(18.5 / (m->zoom / 100.0)) + (env->mx / (m->zoom / 10));
 		m->y1 = -(6.8 / (m->zoom / 100.0)) + (env->my / (m->zoom / 10));
-		m->iter = 70;
+		m->iter = 50;
 		m->z_r = 0;
 		m->z_i = 0;
 		m->i = 0;
@@ -78,7 +49,7 @@ int			mandelbrot(t_env *env)
 		return (1);
 	while (m.x < env->sx)
 	{
-		while (m.y < env->sy)
+		while (++m.y < env->sy)
 		{
 			mandel_init(&m, env, 1);
 			while (m.z_r * m.z_r + m.z_i * m.z_i < 4 && m.i < m.iter)
@@ -87,11 +58,11 @@ int			mandelbrot(t_env *env)
 				m.z_r = m.z_r * m.z_r - m.z_i * m.z_i + m.c_r;
 				m.z_i = 2 * m.tmp * m.z_i + m.c_i;
 				m.i++;
-				env->data[m.y * env->sx + m.x] = palette(env->p, (m.z_r + m.z_i), m.i, m.iter);
+				env->data[m.y * env->sx + m.x] = palette(env->p, (m.z_r + m.z_i)
+				, m.i, m.iter);
 			}
-			m.y++;
 		}
-		m.y = 0;
+		m.y = -1;
 		m.x++;
 	}
 	mlx_put_image_to_window(env->mlx, env->win_main, env->img, 0, 0);

@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dendrite.c                                            :+:      :+:    :+:   */
+/*   dendrite.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:54:54 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/11 16:34:37 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/12 16:09:48 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol.h"
-
-/*
-** dendrite drawing algorithm is the same than Mandelbrot's one, except the c_r
-** and c_i varies.
-*/
 
 int		dendrite_init(t_mandelbrot *m, t_env *env, int moment)
 {
@@ -30,7 +25,7 @@ int		dendrite_init(t_mandelbrot *m, t_env *env, int moment)
 	else
 	{
 		m->x = 500;
-		m->y = 0;
+		m->y = -1;
 		m->zoom = env->zoom;
 		m->x1 = -(15.0 / (m->zoom / 100.0)) + (env->mx / (m->zoom / 10));
 		m->y1 = -(6.6 / (m->zoom / 100.0)) + (env->my / (m->zoom / 10));
@@ -54,7 +49,7 @@ int		dendrite(t_env *env)
 		return (1);
 	while (m.x < env->sx)
 	{
-		while (m.y < env->sy)
+		while (++m.y < env->sy)
 		{
 			dendrite_init(&m, env, 1);
 			while (m.z_r * m.z_r + m.z_i * m.z_i < 4 && m.i < m.iter)
@@ -63,11 +58,11 @@ int		dendrite(t_env *env)
 				m.z_r = m.z_r * m.z_r - m.z_i * m.z_i + m.c_r;
 				m.z_i = 2 * m.tmp * m.z_i + m.c_i;
 				m.i++;
-				env->data[m.y * env->sx + m.x] = palette(env->p, (m.z_r + m.z_i), m.i, m.iter);
+				env->data[m.y * env->sx + m.x] = palette(env->p, (m.z_r + m.z_i)
+				, m.i, m.iter);
 			}
-			m.y++;
 		}
-		m.y = 0;
+		m.y = -1;
 		m.x++;
 	}
 	mlx_put_image_to_window(env->mlx, env->win_main, env->img, 0, 0);

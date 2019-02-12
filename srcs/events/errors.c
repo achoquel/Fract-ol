@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:59:28 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/11 16:27:22 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/12 16:47:05 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int		error(int code)
 	{
 		printf("\033[36m[USAGE] ./fractol {Fractal}\n");
 		printf("\033[36mAvailable Fractals :\n");
-		printf("\033[36m- Mandelbrot\n- Julia\n- BurningShip\n- EvilEyes\033[0m\n");
+		printf(
+		"\033[36m- Mandelbrot\n- Julia\n- BurningShip\n- EvilEyes\033[0m\n");
 		printf("\033[36m- Lapin\n- Dendrite\033[0m\n");
 	}
 	else if (code == 1)
@@ -42,4 +43,3 @@ int		verify_arguments(t_env *env)
 		return (1);
 	return (0);
 }
-

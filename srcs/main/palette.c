@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 15:31:23 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/11 17:01:28 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/12 15:55:05 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,16 @@ int		palette2(int p, int zn, int iter)
 	if (p == 10)
 		return (((255 - iter * zn) << 16) | ((255 - iter * zn) << 8) | (0));
 	else if (p == 11)
-		return (((255 - iter * zn) << 16) | ((255 - iter * zn) << 8) | (255 - iter * zn));
+		return (((255 - iter * zn) << 16) | ((255 - iter * zn) << 8) |
+				(255 - iter * zn));
 	else if (p == 12)
-		return (0x0000FF * (iter + 1 - tan(abs(zn))/sqrt(2)));
+		return (0x0000FF * (iter + 1 - tan(abs(zn)) / sqrt(2)));
 	else if (p == 13)
 		return (0xFFFFFF / cos(abs(zn)));
 	else if (p == 14)
-		return (0xFFFFFF / (- tan(iter / acos(abs(zn)) + log(2) * asin(zn))));
+		return (0xFFFFFF / (-tan(iter / acos(abs(zn)) + log(2) * asin(zn))));
 	else
-		return (0xFFFFFF / (- cos(iter / asin(abs(zn)) + log(2) * atan(zn))));
+		return (0xFFFFFF / (-cos(iter / asin(abs(zn)) + log(2) * atan(zn))));
 }
 
 int		palette(int p, int zn, int iter, int max)
