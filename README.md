@@ -27,11 +27,14 @@
  - Fin de l'ATH (Ajout des textes).
  - Retrait du no_param.
  
+**12/02 :** (alias kappa l'exam GNL)
+
+ - Opti : baisse des iterations max.
+ - Mise a la norme et repartition des fonctions dans les fichiers.
+ - Tentative de multithread, c'est cancer
+ - Ready 2 push, a voir si je multithread ou pas.
+ 
 **Reste a faire :**
  
-  - Multithreading.
-  - Event Handler à bien travailler.
-  - Pourquoi pas ajouter quelques fractales ?
+  - Multithreading (ou pas). ¯\_(ツ)_/¯
   - Checker TOUS les leaks.
-  
-challah ca leak pas woullah et ca vaut 125
