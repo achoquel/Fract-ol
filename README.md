@@ -34,7 +34,7 @@
  - Tentative de multithread, c'est cancer
  - Ready 2 push, a voir si je multithread ou pas.
  
-**Reste a faire :**
+ **13/02 :**
  
-  - Multithreading (ou pas). ¯\_(ツ)_/¯
-  - Checker TOUS les leaks.
+  - Version finale. (jbaiz le multithreading)
+  - Ajout du zoom sur le pointeur de la souris.
