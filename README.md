@@ -1,4 +1,18 @@
 ## Fract'ol
+**Features :**
+ - 7 Fractales : Mandelbrot, Julia, Burning Ship, EvilEyes (Custom), Lapin de Douady, Dendrite, Mandelbar.
+ - 16 Palettes de couleurs sur plusieurs motifs.
+ - ATH intuitif.
+ - Zoom / Dezoom sur le pointeur.
+ - Déplacement avec les flèches.
+ - Fractal Changer.
+ - Flag -optimized pour une navigation plus fluide, mais avec une plus petite fenêtre.
+ - Variation et lock du paramètre de Julia.
+ - Fermeture avec la croix rouge & ECHAP.
+ - Facteur de zoom/déplacement pour ajuster la puissance des paramètres.
+ - Gestion des erreurs en couleurs.
+
+## Changelog
 **05/02 :** Début de projet, fractale Mandelbrot et Julia.
 
 **06/02 :** 
@@ -36,5 +50,6 @@
  
  **13/02 :**
  
-  - Version finale. (jbaiz le multithreading)
   - Ajout du zoom sur le pointeur de la souris.
+  - Ajout de la fractale Mandelbar.
+  - Ajout du flag -optimized.
