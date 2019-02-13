@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:26:30 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/12 17:18:30 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/13 13:33:52 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,20 @@ typedef struct	s_env
 	double		zfactor;
 	int			locked;
 	int			p;
+	double		zx;
+	double		zy;
+	int			x;
+	int			y;
+	double		x1;
+	double		y1;
+	double		iter;
+	double		z_r;
+	double		z_i;
+	double		c_r;
+	double		c_i;
+	double		tmp;
+	double		i;
+
 }				t_env;
 
 typedef struct	s_mandelbrot
@@ -94,5 +108,7 @@ int				move_handler(int key, t_env *env);
 int				fractal_changer(int key, t_env *env);
 int				theme_handler(t_env *env);
 int				reset_handler(t_env *env);
+void			fract_init(t_env *env);
+void			zoom_handler(t_env *env, int x, int y, int key);
 
 #endif

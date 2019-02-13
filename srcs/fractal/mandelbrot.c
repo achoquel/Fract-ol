@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:52:34 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/12 16:07:34 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/13 12:49:38 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static int	mandel_init(t_mandelbrot *m, t_env *env, int moment)
 		m->x = 500;
 		m->y = -1;
 		m->zoom = env->zoom;
-		m->x1 = -(18.5 / (m->zoom / 100.0)) + (env->mx / (m->zoom / 10));
-		m->y1 = -(6.8 / (m->zoom / 100.0)) + (env->my / (m->zoom / 10));
 		m->iter = 50;
+		m->x1 = env->x1;
+		m->y1 = env->y1;
 		m->z_r = 0;
 		m->z_i = 0;
 		m->i = 0;

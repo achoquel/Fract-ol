@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:54:54 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/12 16:10:26 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/13 13:03:28 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int		douady_init(t_mandelbrot *m, t_env *env, int moment)
 		m->x = 500;
 		m->y = -1;
 		m->zoom = env->zoom;
-		m->x1 = -(15.0 / (m->zoom / 100.0)) + (env->mx / (m->zoom / 10));
-		m->y1 = -(6.6 / (m->zoom / 100.0)) + (env->my / (m->zoom / 10));
+		m->x1 = env->x1;
+		m->y1 = env->y1;
 		m->iter = 50;
 		m->z_r = 0;
 		m->z_i = 0;

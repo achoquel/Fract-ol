@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:59:28 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/12 16:47:05 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/13 13:42:24 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int		error(int code)
 		printf("\033[36m- Lapin\n- Dendrite\033[0m\n");
 	}
 	else if (code == 1)
+	{
 		printf("\033[22;31m[ERROR] Wrong Fractal !\033[0m\n");
+		return (error(0));
+	}
 	else if (code == 2)
 		printf("\033[22;31m[ERROR] Window creation has failed !\033[0m\n");
 	else if (code == 3)

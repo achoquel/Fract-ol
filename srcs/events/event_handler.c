@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 11:07:37 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/12 16:56:07 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/13 13:08:17 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int		reset_handler(t_env *env)
 	env->jy = 0;
 	env->p = 0;
 	mlx_clear_window(env->mlx, env->win_main);
+	fract_init(env);
 	draw_fractal(env);
 	return (0);
 }

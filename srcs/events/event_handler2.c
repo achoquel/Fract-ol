@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 16:50:12 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/12 16:53:15 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/13 13:34:47 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	move_handler(int key, t_env *env)
 {
 	if (key == 125)
-		env->my -= (-1 * env->mfactor);
+		env->y1 += (-1 * env->mfactor) / (env->zoom / 10);
 	else if (key == 126)
-		env->my -= (1 * env->mfactor);
+		env->y1 += (1 * env->mfactor) / (env->zoom / 10);
 	else if (key == 124)
-		env->mx -= (-1 * env->mfactor);
+		env->x1 += (-1 * env->mfactor) / (env->zoom / 10);
 	else if (key == 123)
-		env->mx -= (1 * env->mfactor);
+		env->x1 += (1 * env->mfactor) / (env->zoom / 10);
 	mlx_clear_window(env->mlx, env->win_main);
 	draw_fractal(env);
 	return (0);
@@ -49,15 +49,11 @@ int	fractal_changer(int key, t_env *env)
 
 int	mouse_hooks(int key, int x, int y, t_env *env)
 {
-	(void)x;
-	(void)y;
 	if (key == 5 || key == 4 || (key == 1 && ft_strcmp(env->fract, "Julia") ==
 		0))
 	{
-		if (key == 5)
-			env->zoom /= (1.1 + env->zfactor);
-		if (key == 4)
-			env->zoom *= (1.1 + env->zfactor);
+		if (key == 4 || key == 5)
+			zoom_handler(env, x, y, key);
 		if (key == 1 && ft_strcmp(env->fract, "Julia") == 0)
 		{
 			if (env->locked == 0)

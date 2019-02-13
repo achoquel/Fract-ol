@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:56:24 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/12 17:18:54 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/13 13:04:21 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int		burning_init(t_mandelbrot *m, t_env *env, int moment)
 		m->x = 500;
 		m->y = -1;
 		m->zoom = env->zoom;
-		m->x1 = -(18.5 / (m->zoom / 100.0)) + (env->mx / (m->zoom / 10));
-		m->y1 = -(10.5 / (m->zoom / 100.0)) + (env->my / (m->zoom / 10));
+		m->x1 = env->x1;
+		m->y1 = env->y1;
 		m->iter = 64;
 		m->z_r = 0;
 		m->z_i = 0;

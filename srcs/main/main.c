@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 11:05:37 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/12 16:44:42 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/13 13:35:00 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	vars_init(t_env *env)
 	env->my = 0;
 	env->mfactor = 1.0;
 	env->zfactor = 0.0;
+	fract_init(env);
 	env->p = 0;
 	env->locked = 0;
 }
