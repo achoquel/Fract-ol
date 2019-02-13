@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   mandelbar.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/06 10:54:54 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/13 16:04:41 by achoquel         ###   ########.fr       */
+/*   Created: 2019/02/06 10:52:34 by achoquel          #+#    #+#             */
+/*   Updated: 2019/02/13 17:18:45 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol.h"
 
-int		julia_init(t_mandelbrot *m, t_env *env, int moment)
+static int	mandel_init(t_mandelbrot *m, t_env *env, int moment)
 {
 	if (moment == 1)
 	{
-		m->c_r = env->jx;
-		m->c_i = env->jy;
-		m->z_r = m->x / m->zoom + m->x1;
-		m->z_i = m->y / m->zoom + m->y1;
+		m->c_r = m->x / m->zoom + m->x1;
+		m->c_i = m->y / m->zoom + m->y1;
+		m->z_r = 0;
+		m->z_i = 0;
 		m->i = 0;
 	}
 	else
@@ -27,9 +27,9 @@ int		julia_init(t_mandelbrot *m, t_env *env, int moment)
 		m->x = 500 - env->opti * 500;
 		m->y = -1;
 		m->zoom = env->zoom;
+		m->iter = 50;
 		m->x1 = env->x1;
 		m->y1 = env->y1;
-		m->iter = 70;
 		m->z_r = 0;
 		m->z_i = 0;
 		m->i = 0;
@@ -41,22 +41,22 @@ int		julia_init(t_mandelbrot *m, t_env *env, int moment)
 	return (0);
 }
 
-int		julia(t_env *env)
+int			mandelbar(t_env *env)
 {
 	t_mandelbrot m;
 
-	if (julia_init(&m, env, 0) == 1)
+	if (mandel_init(&m, env, 0) == 1)
 		return (1);
 	while (m.x < env->sx)
 	{
 		while (++m.y < env->sy)
 		{
-			julia_init(&m, env, 1);
+			mandel_init(&m, env, 1);
 			while (m.z_r * m.z_r + m.z_i * m.z_i < 4 && m.i < m.iter)
 			{
 				m.tmp = m.z_r;
 				m.z_r = m.z_r * m.z_r - m.z_i * m.z_i + m.c_r;
-				m.z_i = 2 * m.tmp * m.z_i + m.c_i;
+				m.z_i = -2 * m.tmp * m.z_i + m.c_i;
 				m.i++;
 				env->data[m.y * env->sx + m.x] = palette(env->p, (m.z_r + m.z_i)
 				, m.i, m.iter);

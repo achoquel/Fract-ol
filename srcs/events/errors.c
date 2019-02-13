@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:59:28 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/13 13:42:24 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/13 17:20:57 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ int		error(int code)
 {
 	if (code == 0)
 	{
-		printf("\033[36m[USAGE] ./fractol {Fractal}\n");
-		printf("\033[36mAvailable Fractals :\n");
+		printf("\033[36m[USAGE] ./fractol {Fractal}\n\n");
+		printf("\033[33mAvailable Fractals :\n");
 		printf(
-		"\033[36m- Mandelbrot\n- Julia\n- BurningShip\n- EvilEyes\033[0m\n");
-		printf("\033[36m- Lapin\n- Dendrite\033[0m\n");
+		"\033[33m- Mandelbrot\n- Julia\n- BurningShip\n- EvilEyes\033[0m\n");
+		printf("\033[33m- Lapin\n- Dendrite\n- Mandelbar\033[0m\n\n");
+		printf("\033[32mAvailable Flags :\n -optimized\033[0m\n");
 	}
 	else if (code == 1)
 	{
@@ -42,7 +43,8 @@ int		verify_arguments(t_env *env)
 	&& ft_strcmp(env->fract, "Mandelbrot") != 0
 	&& ft_strcmp(env->fract, "EvilEyes") != 0
 	&& ft_strcmp(env->fract, "Dendrite") != 0
-	&& ft_strcmp(env->fract, "Lapin") != 0)
+	&& ft_strcmp(env->fract, "Lapin") != 0
+	&& ft_strcmp(env->fract, "Mandelbar") != 0)
 		return (1);
 	return (0);
 }

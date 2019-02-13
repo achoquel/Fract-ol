@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 11:05:37 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/13 13:35:00 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/13 17:36:56 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,33 @@ int		draw_fractal(t_env *env)
 		return (douady(env));
 	else if (ft_strcmp(env->fract, "Dendrite") == 0)
 		return (dendrite(env));
+	else if (ft_strcmp(env->fract, "Mandelbar") == 0)
+		return (mandelbar(env));
 	return (0);
 }
 
 void	vars_init(t_env *env)
 {
-	env->zoom = 650;
-	env->sx = 2560;
-	env->sy = 1440;
+	if (env->opti == 0)
+	{
+		env->zoom = 650;
+		env->sx = 2560;
+		env->sy = 1440;
+		fract_init(env);
+	}
+	else
+	{
+		env->zoom = 200;
+		env->sx = 600;
+		env->sy = 400;
+		fract_initopti(env);
+	}
 	env->jx = 0;
 	env->jy = 0;
 	env->mx = 0;
 	env->my = 0;
 	env->mfactor = 1.0;
 	env->zfactor = 0.0;
-	fract_init(env);
 	env->p = 0;
 	env->locked = 0;
 }
@@ -92,10 +104,15 @@ int		main(int argc, char **argv)
 {
 	t_env env;
 
-	if (argc != 2)
+	if (argc < 2 && argc > 3)
+		return (error(0));
+	if (argc == 3 && ft_strcmp(argv[2], "-optimized") != 0)
 		return (error(0));
 	env.fract = argv[1];
-	env.params = argc;
+	if (argc == 3)
+		env.opti = 1;
+	else
+		env.opti = 0;
 	if (env_init(&env) == 1)
 		return (1);
 	return (0);

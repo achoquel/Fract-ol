@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:26:30 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/13 13:33:52 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/13 17:18:20 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef struct	s_env
 	int			closed;
 	int			sx;
 	int			sy;
-	int			params;
 	void		*img;
 	int			*data;
 	int			bpp;
@@ -68,6 +67,7 @@ typedef struct	s_env
 	double		c_i;
 	double		tmp;
 	double		i;
+	int			opti;
 
 }				t_env;
 
@@ -96,6 +96,7 @@ int				burning(t_env *env);
 int				eye(t_env *env);
 int				douady(t_env *env);
 int				dendrite(t_env *env);
+int				mandelbar(t_env *env);
 int				mouse_hooks(int key, int x, int y, t_env *env);
 int				key_hooks(int key, t_env *env);
 int				esc_handler(int key, t_env *env);
@@ -109,6 +110,8 @@ int				fractal_changer(int key, t_env *env);
 int				theme_handler(t_env *env);
 int				reset_handler(t_env *env);
 void			fract_init(t_env *env);
+void			fract_initopti(t_env *env);
 void			zoom_handler(t_env *env, int x, int y, int key);
+int				hud_master(t_env *env);
 
 #endif

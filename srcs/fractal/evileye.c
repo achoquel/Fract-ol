@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:54:54 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/13 13:02:30 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/13 16:05:19 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		eye_init(t_mandelbrot *m, t_env *env, int moment)
 	}
 	else
 	{
-		m->x = 500;
+		m->x = 500 - env->opti * 500;
 		m->y = -1;
 		m->zoom = env->zoom;
 		m->x1 = env->x1;
@@ -67,5 +67,5 @@ int		eye(t_env *env)
 	}
 	mlx_put_image_to_window(env->mlx, env->win_main, env->img, 0, 0);
 	mlx_destroy_image(env->mlx, env->img);
-	return (hud(env));
+	return (hud_master(env));
 }

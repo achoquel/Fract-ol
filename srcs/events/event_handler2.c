@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 16:50:12 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/13 13:34:47 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/13 17:28:07 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	fractal_changer(int key, t_env *env)
 		env->fract = "Lapin";
 	if (key == 97 && ft_strcmp(env->fract, "Dendrite") != 0)
 		env->fract = "Dendrite";
+	if (key == 98 && ft_strcmp(env->fract, "Mandelbar") != 0)
+		env->fract = "Mandelbar";
 	reset_handler(env);
 	mlx_clear_window(env->mlx, env->win_main);
 	draw_fractal(env);
