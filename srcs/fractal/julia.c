@@ -6,11 +6,25 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:54:54 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/13 16:04:41 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/14 13:20:25 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol.h"
+
+void	julia_param_init(t_env *env)
+{
+	if (ft_strcmp(env->fract, "Julia") == 0)
+	{
+		env->jx = -0.8;
+		env->jy = 0.156;
+	}
+	else if (ft_strcmp(env->fract, "Juliabs") == 0)
+	{
+		env->jx = -0.113333;
+		env->jy = 0.227273;
+	}
+}
 
 int		julia_init(t_mandelbrot *m, t_env *env, int moment)
 {
@@ -29,7 +43,7 @@ int		julia_init(t_mandelbrot *m, t_env *env, int moment)
 		m->zoom = env->zoom;
 		m->x1 = env->x1;
 		m->y1 = env->y1;
-		m->iter = 70;
+		m->iter = env->iter;
 		m->z_r = 0;
 		m->z_i = 0;
 		m->i = 0;

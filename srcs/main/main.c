@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 11:05:37 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/13 17:36:56 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/14 13:21:16 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		hud(t_env *env)
 	char	*t2;
 
 	t1 = ft_itoa(env->mfactor);
-	t2 = ft_itoa(env->zfactor * 10);
+	t2 = ft_itoa(env->iter);
 	if ((env->img = mlx_xpm_file_to_image(env->mlx, "./img/ath.xpm",
 		&env->size_l, &env->bpp)) == NULL)
 		return (error(3));
@@ -50,6 +50,8 @@ int		draw_fractal(t_env *env)
 		return (dendrite(env));
 	else if (ft_strcmp(env->fract, "Mandelbar") == 0)
 		return (mandelbar(env));
+	else if (ft_strcmp(env->fract, "Juliabs") == 0)
+		return (juliabs(env));
 	return (0);
 }
 
@@ -69,14 +71,13 @@ void	vars_init(t_env *env)
 		env->sy = 400;
 		fract_initopti(env);
 	}
-	env->jx = 0;
-	env->jy = 0;
+	julia_param_init(env);
 	env->mx = 0;
 	env->my = 0;
 	env->mfactor = 1.0;
 	env->zfactor = 0.0;
 	env->p = 0;
-	env->locked = 0;
+	env->locked = 1;
 }
 
 int		env_init(t_env *env)
@@ -104,10 +105,10 @@ int		main(int argc, char **argv)
 {
 	t_env env;
 
-	if (argc < 2 && argc > 3)
+	if (argc < 2 || argc > 3)
 		return (error(0));
 	if (argc == 3 && ft_strcmp(argv[2], "-optimized") != 0)
-		return (error(0));
+		return (error(4));
 	env.fract = argv[1];
 	if (argc == 3)
 		env.opti = 1;

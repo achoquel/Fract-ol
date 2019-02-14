@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 16:50:12 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/13 17:28:07 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/14 13:11:23 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	fractal_changer(int key, t_env *env)
 		env->fract = "Dendrite";
 	if (key == 98 && ft_strcmp(env->fract, "Mandelbar") != 0)
 		env->fract = "Mandelbar";
+	if (key == 100 && ft_strcmp(env->fract, "Juliabs") != 0)
+		env->fract = "Juliabs";
 	reset_handler(env);
 	mlx_clear_window(env->mlx, env->win_main);
 	draw_fractal(env);
@@ -51,12 +53,13 @@ int	fractal_changer(int key, t_env *env)
 
 int	mouse_hooks(int key, int x, int y, t_env *env)
 {
-	if (key == 5 || key == 4 || (key == 1 && ft_strcmp(env->fract, "Julia") ==
-		0))
+	if (key == 5 || key == 4 || (key == 1 && (ft_strcmp(env->fract, "Julia") ==
+		0 || ft_strcmp(env->fract, "Juliabs") == 0)))
 	{
 		if (key == 4 || key == 5)
 			zoom_handler(env, x, y, key);
-		if (key == 1 && ft_strcmp(env->fract, "Julia") == 0)
+		if (key == 1 && (ft_strcmp(env->fract, "Julia") == 0
+					|| ft_strcmp(env->fract, "Juliabs") == 0))
 		{
 			if (env->locked == 0)
 				env->locked = 1;

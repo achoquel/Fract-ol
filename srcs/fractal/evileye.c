@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:54:54 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/13 16:05:19 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/14 12:23:23 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		eye_init(t_mandelbrot *m, t_env *env, int moment)
 		m->zoom = env->zoom;
 		m->x1 = env->x1;
 		m->y1 = env->y1;
-		m->iter = 150;
+		m->iter = env->iter;
 		m->z_r = 0;
 		m->z_i = 0;
 		m->i = 0;

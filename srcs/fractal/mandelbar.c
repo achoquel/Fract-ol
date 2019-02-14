@@ -6,13 +6,13 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:52:34 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/13 17:18:45 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/14 13:08:47 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fractol.h"
 
-static int	mandel_init(t_mandelbrot *m, t_env *env, int moment)
+int	mandelbar_init(t_mandelbrot *m, t_env *env, int moment)
 {
 	if (moment == 1)
 	{
@@ -27,7 +27,7 @@ static int	mandel_init(t_mandelbrot *m, t_env *env, int moment)
 		m->x = 500 - env->opti * 500;
 		m->y = -1;
 		m->zoom = env->zoom;
-		m->iter = 50;
+		m->iter = env->iter;
 		m->x1 = env->x1;
 		m->y1 = env->y1;
 		m->z_r = 0;
@@ -41,17 +41,17 @@ static int	mandel_init(t_mandelbrot *m, t_env *env, int moment)
 	return (0);
 }
 
-int			mandelbar(t_env *env)
+int	mandelbar(t_env *env)
 {
 	t_mandelbrot m;
 
-	if (mandel_init(&m, env, 0) == 1)
+	if (mandelbar_init(&m, env, 0) == 1)
 		return (1);
 	while (m.x < env->sx)
 	{
 		while (++m.y < env->sy)
 		{
-			mandel_init(&m, env, 1);
+			mandelbar_init(&m, env, 1);
 			while (m.z_r * m.z_r + m.z_i * m.z_i < 4 && m.i < m.iter)
 			{
 				m.tmp = m.z_r;

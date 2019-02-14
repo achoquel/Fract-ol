@@ -6,7 +6,7 @@
 #    By: achoquel <achoquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/06 12:01:01 by achoquel          #+#    #+#              #
-#    Updated: 2019/02/13 17:16:06 by achoquel         ###   ########.fr        #
+#    Updated: 2019/02/14 13:01:23 by achoquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ NAME	=	fractol
 
 SRCS	=	srcs/fractal/mandelbrot.c	\
 			srcs/fractal/julia.c		\
+			srcs/fractal/juliabs.c		\
 			srcs/fractal/burning.c		\
 			srcs/fractal/evileye.c		\
 			srcs/fractal/douady.c		\

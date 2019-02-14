@@ -6,7 +6,7 @@
 /*   By: achoquel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:26:30 by achoquel          #+#    #+#             */
-/*   Updated: 2019/02/13 17:18:20 by achoquel         ###   ########.fr       */
+/*   Updated: 2019/02/14 13:21:43 by achoquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int				verify_arguments(t_env *env);
 int				draw_fractal(t_env *env);
 int				mandelbrot(t_env *env);
 int				julia(t_env *env);
+int				juliabs(t_env *env);
 int				burning(t_env *env);
 int				eye(t_env *env);
 int				douady(t_env *env);
@@ -113,5 +114,6 @@ void			fract_init(t_env *env);
 void			fract_initopti(t_env *env);
 void			zoom_handler(t_env *env, int x, int y, int key);
 int				hud_master(t_env *env);
+void			julia_param_init(t_env *env);
 
 #endif
